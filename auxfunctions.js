@@ -28,43 +28,6 @@ function linesToDraw() {
 	}
 }
 
-
-//IMAGE EXPORT
-function nameFile(){
-	return 'sketch_'+year()+month()+day()+'_'+hour()+minute()+second()+clickCount;
-}
-
-function saveImg () {
-	if(pointerUpperLeft(mouseX,mouseY)) {
-		console.log(nameFile());
-		saveCanvas(c, nameFile(), fileFormat);
-		}
-}
-
-
-//MOUSE
-function pointerUpperLeft(x,y) {
-	return x < 0.1 * width && y < 0.1 * height;
-}
-
-function pointerUpperRight(x,y) {
-	return x > 0.9 * width && y < 0.1 * height;
-}
-
-function pointerLowerLeft(x,y) {
-	return x<0.1*width && y >0.9*height;
-	}
-
-function pointerBottom(y) {
-	return y > 0.9 * height;
-}	
-
-function pointerMiddleBand(y) {
-	return y > 0.9 * height && y > 0.1 * height;
-}
-
-
-
 //MODULATORS
 function sin_(i, speed = 100) { return sin(i/speed + PI / 2)}
 
@@ -74,15 +37,7 @@ function randomGate (f) {
 	if (Math.floor(random(f)) == 0) {return 1} else {return 0}
 }
 
-
-//JSON Data
-//allows time to be displayed in mm:ss format 
-function millisToTime(mills) {
-	let minutes = "0"+Math.floor(mills / 60000).toString();
-	let seconds = "0"+Math.floor((mills % 60000)/1000).toString(); 
-	return minutes.slice(-2)+':'+seconds.slice(-2);
-}
-
+//JSON MANIPULATION
 class DataStream {
 	constructor (path) {	
 		this.stream_ = path.slice(2,path.length); // first two items in the array are weird
@@ -138,20 +93,22 @@ function clamp (num, high, low) {
 		return Math.max(Math.min(num, Math.max(low, high)), Math.min(low, high))
 }
 
-function followPointer (axis, val, easing) { 
-	if(axis == 'x') {
-		if (val != mouseX) {
-			return val + (mouseX - val) * easing;
-		} else {
-			return val
+
+//IMAGE EXPORT
+function nameFile(){
+	return 'sketch_'+year()+month()+day()+'_'+hour()+minute()+second()+clickCount;
+}
+
+function saveImg () {
+	if(pointerUpperLeft(mouseX,mouseY)) {
+		console.log(nameFile());
+		saveCanvas(c, nameFile(), fileFormat);
 		}
-	} else if (axis == 'y') {
-		if (val != mouseY) {
-			return val + (mouseY - val) * easing;
-		}  else {
-			return val
-		}
-	} else {
-			'first argument must be x or y (string)'
-	}
+}
+
+//UTILITY
+function millisToTime(mills) {
+	let minutes = "0"+Math.floor(mills / 60000).toString();
+	let seconds = "0"+Math.floor((mills % 60000)/1000).toString(); 
+	return minutes.slice(-2)+':'+seconds.slice(-2);
 }

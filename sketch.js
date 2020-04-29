@@ -10,21 +10,22 @@ function preload() {
 function setup() {
 	c = createCanvas(windowWidth, windowHeight);	
 	
+	//datasources
+	data1 = new DataStream(songData.razor.LoudnessMean);
+	data2 = new DataStream(songData.udu.LoudnessMean);
+	
+	
 	//config
 	writeSpeed = 10; //framerate
-	rotateAmt = 0; 
-	linesPerWrite = 1;
-	growShrinkAmt = 1;
 	
 	gXPos = width * 0.25; 
 	gYPos = height * 0.5;
-
+	rotateAmt = 0; 
+	linesPerWrite = 1; // how many lines to write per frame
+	growShrinkAmt = 1; 
 	growShrinkOn = true; //use growing and shrinking form?
 	initBezzes = 1; //how many lines to start with
 	initMaxBezzes = 200; // how many lines to grow to
-
-	data1 = new DataStream(songData.razor.LoudnessMean);
-	data2 = new DataStream(songData.udu.LoudnessMean);
 
 	//background initial
 	bgColor = {
@@ -163,7 +164,7 @@ function draw() {
 			};
 		};
 	
-		if (timecode >= 	data1.stream.length - 7*(1000/writeSpeed)) {
+		if (timecode >= data1.stream.length - 7*(1000/writeSpeed)) {
 			console.log(timecode); 
 			startPlay(song);
 		 };
