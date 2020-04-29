@@ -20,7 +20,7 @@ function setup() {
 	
 	gXPos = width * 0.25; 
 	gYPos = height * 0.5;
-	rotateAmt = 0; 
+	rotateAmt = -20; 
 	linesPerWrite = 1; // how many lines to write per frame
 	growShrinkAmt = 1; 
 	growShrinkOn = true; //use growing and shrinking form?
