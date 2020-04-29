@@ -162,8 +162,6 @@ function draw() {
 				growShrink(initMaxBezzes);
 			};
 		};
-			
-		loopState = true;
 	
 		if (timecode >= 	data1.stream.length - 7*(1000/writeSpeed)) {
 			console.log(timecode); 
