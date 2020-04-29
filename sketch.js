@@ -18,6 +18,7 @@ function setup() {
 	writeSpeed = 10; //framerate
 	
 	linesPerWrite = 1; // how many lines to write per frame
+	shearAmt = -20;
 	growShrinkAmt = 1;  // amount to grow or shrink per frame
 	growShrinkOn = true; //use growing and shrinking form?
 	initBezzes = 1; //how many lines to start with
@@ -121,6 +122,7 @@ function draw() {
 				ellipse(ellipseX, ellipseY, 10, 10);
 			pop();
 			push();
+				shearX(shearAmt);
 				scale(scaleX,scaleY);
 				writeLines(frameCount-2, maxBezzes,0,0);
 			pop();

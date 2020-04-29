@@ -11,6 +11,7 @@ let initState;
 let bezzes = [];
 let growShrinkOn;
 let initMaxBezzes;
+let rotateAmt;
 let maxBezzes;
 let c;
 
