@@ -12,8 +12,6 @@ let bezzes = [];
 let growShrinkOn;
 let initMaxBezzes;
 let maxBezzes;
-let gXPos;
-let gYPos;
 let c;
 
 let bez1;
