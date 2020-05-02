@@ -164,7 +164,7 @@ function draw() {
 			};
 		};
 	
-		if (timecode >= data1.stream.length - 7*(1000/writeSpeed)) {
+		if (timecode >= data1.stream.length - 10*(1000/writeSpeed)) {
 			console.log(timecode); 
 			startPlay(song);
 		 };
