@@ -37,7 +37,7 @@ function setup() {
 
 	//bezier initial values
 		scaleX = 1.2;
-		scaleY = 1.3;
+		scaleY = 1.0;
 		bez1 = {
 			vert: {
 				x1: width * 0.25,
