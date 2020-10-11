@@ -1,6 +1,7 @@
 //SETUP
 function preload() {
 	songData = loadJSON('data/bergintro_means.json');
+	img = loadImage(imgfile);
 	
 	soundFormats('mp3');
 	song = loadSound('audio/1 berg intro MIX 1.0');
@@ -9,6 +10,7 @@ function preload() {
 
 function setup() {
 	c = createCanvas(windowWidth, windowHeight);	
+	
 	
 	//datasources
 	data1 = new DataStream(songData.razor.LoudnessMean);
@@ -29,10 +31,10 @@ function setup() {
 
 	//background initial
 	bgColor = {
-		red: 50,
-		green: 83,
-		blue: 41,
-		alpha: 255
+		red: 183,
+		green: 168,
+		blue: 118,
+		alpha: 150
 	}
 
 	//bezier initial values
@@ -50,9 +52,9 @@ function setup() {
 				y2: height * 0.5,
 			},
 			stroke: {
-				red: 150,
-				green: 150,
-				blue: 150,
+				red: 255,
+				green: 255,
+				blue: 255,
 				alpha: 127
 			},
 			fill: {
@@ -76,13 +78,16 @@ function setup() {
 	ellipseX = mouseX;
 	ellipseY = mouseY;
 
+
+	showimage();
+	c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
 	noLoop();
 }
 
 //DRAW
 function draw() {
 	if(!initState) {
-		let ii = millis() * writeSpeed/60; //
+		ii = millis() * writeSpeed/60; //
 		mills = Date.now() - startTime;
 		timecode = Math.ceil(mills/16); //sync song to visual
 		let easing = 0.03;
@@ -118,11 +123,12 @@ function draw() {
 			//maxBezzes = round(map(mouseX,0,width,1,500));
 	
 			//background
-			bgColor.red = lerp(bgColor.red,69 + data1.modulator(timecode,0.8,0,0,60),0.5);
+			// bgColor.red = lerp(bgColor.red,bgColor.red + data1.modulator(timecode,0.8,0,0,30),0.5);
+			bgColor.red = 183 + data1.modulator(timecode, 0.8, 0, 0, 20);
 	
 			//ellipse
-			ellipseX = followPointer('x',ellipseX,easing*5);
-			ellipseY = followPointer('y',ellipseY,easing*5);
+			// ellipseX = followPointer('x',ellipseX,easing*5);
+			// ellipseY = followPointer('y',ellipseY,easing*5);
 		
 		//create bez objects
 		bezzes.push(new Bez(bez1));	
@@ -136,14 +142,15 @@ function draw() {
 		//drawing
 		if(frameCount % linesPerWrite == 0) {
 			//c.clear(); //transparent background
+			showimage();
 			c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha); //
 			
 			//pointer circle
-			push();
-				noStroke();
-				fill(150);
-				ellipse(ellipseX, ellipseY, 10, 10);
-			pop();
+			// push();
+			// 	noStroke();
+			// 	fill(150);
+			// 	ellipse(ellipseX, ellipseY, 10, 10);
+			// pop();
 			push();
 				//translate((x2-x1)/2,0)
 				shearX(rotateAmt); // does this work? 
@@ -164,7 +171,7 @@ function draw() {
 			};
 		};
 	
-		if (timecode >= data1.stream.length - 7*(1000/writeSpeed)) {
+		if (timecode >= data1.stream.length - 10*(1000/writeSpeed)) {
 			console.log(timecode); 
 			startPlay(song);
 		 };

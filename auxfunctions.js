@@ -5,6 +5,31 @@ function startPlay(song){
 	song.play();
 }
 
+//IMAGE + BG
+function imgsub() {
+	img.resize(width, 0);
+	subw = submatx * img.width;
+	subh = submatx * img.height;
+
+	//sin / noise
+	subx = map(sin_(ii,768),-1,1,0,img.width*submatx);
+	suby = map(sin_(ii,890),-1,1,0,img.height*submatx);
+	// suby = sin_(ii,8432,0,img.height*submatx);
+	// // subx = bfg(timecode, 0.0006, 3, 0.2, 0, img.width * submatx);
+	// // suby = bfg(timecode+3892, 0.0006, 4, 0.5, 0, img.width * submatx);
+
+	// //mouse
+	// let tx = map(mouseX,0,width,0,img.width * submatx) - subx;
+	// let ty = map(mouseY,0,height,0,img.height * submatx) - suby; 
+	// subx += tx * matxeasing;
+	// suby += ty * matxeasing;
+}
+
+function showimage() {
+	imgsub();
+	image(img, 0, 0, width, height, subx, suby, subw, subh);
+}
+
 //DRAWING
 function maxBezInc(inc) {
 	maxBezzes += inc
