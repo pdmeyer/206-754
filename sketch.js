@@ -1,16 +1,13 @@
-//SETUP
 function preload() {
-	songData = loadJSON('data/bergintro_trimmed.json');
-	img = loadImage(imgfile);
-	
+	songData = loadJSON(jsonfile);
+	img = loadImage(imgfile);	
 	soundFormats('mp3');
-	song = loadSound('audio/01_berg intro MIX 1.0_M3_256');
+	song = loadSound(audiofile);
 }
 
 function setup() {
 	c = createCanvas(windowWidth, windowHeight);	
 	data1 = new DataStream(songData.razor);
-	//data2 = new DataStream(songData.udu);
 	gXPos = width * 0.25; 
 	gYPos = height * 0.5;
 
@@ -57,29 +54,28 @@ function setup() {
 	noLoop();
 }
 
-//DRAW
 function draw() {
 	if(!initState) {
-		ii = millis() * writeSpeed/60; //
+		ii = millis() * writeSpeed/60;
 		mills = Date.now() - startTime;
 		timecode = Math.ceil(mills/16); //sync song to visual
 		let easing = 0.03;
 	
 		//modulations
-			bez1.vert.x1 = followPointer('x', bez1.vert.x1, easing); 
-			bez1.vert.y1 = followPointer('y', bez1.vert.y1, easing); 
-	
-			bez1.vert.cpx1 += 11 * vect_(ii, 105).y;
-			bez1.vert.cpy1 += 1.3 * sin_(ii,45);
-			bez1.vert.cpy2 += 1.3 * sin_(ii,52);
-			bez1.vert.cpy1 += 7.6 * vect_(ii, 300).y;
-			bez1.vert.cpx2 += 10 * vect_(ii, 400).y;
-			bez1.vert.cpy1 += 4.2 * vect_(ii, 500).x;
-			bez1.vert.x2 += -0.5 * sin_(ii,1000)
-			
-			//fill color
-			bez1.fill.alpha = 10 * sin_(ii,1000);
-			bgColor.red = bgColor.red_i + data1.modulator(timecode, 0.8, 0, 0, 20);
+		bez1.vert.x1 = followPointer('x', bez1.vert.x1, easing); 
+		bez1.vert.y1 = followPointer('y', bez1.vert.y1, easing); 
+
+		bez1.vert.cpx1 += 11 * vect_(ii, 105).y;
+		bez1.vert.cpy1 += 1.3 * sin_(ii,45);
+		bez1.vert.cpy2 += 1.3 * sin_(ii,52);
+		bez1.vert.cpy1 += 7.6 * vect_(ii, 300).y;
+		bez1.vert.cpx2 += 10 * vect_(ii, 400).y;
+		bez1.vert.cpy1 += 4.2 * vect_(ii, 500).x;
+		bez1.vert.x2 += -0.5 * sin_(ii,1000)
+		
+		//fill color
+		bez1.fill.alpha = 10 * sin_(ii,1000);
+		bgColor.red = bgColor.red_i + data1.modulator(timecode, 0.8, 0, 0, 20);
 		
 		//create bez objects
 		bezzes.push(new Bez(bez1));
@@ -96,10 +92,9 @@ function draw() {
 			if(!bgColor.red) {
 				bg.Color.red = bgColor.red_i;
 			}
-			c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha); //
+			c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
 
 			push();
-			// shearX(rotateAmt); // does this work? 
 			scale(scaleX,scaleY);
 			writeLines(frameCount-2, maxBezzes,0,0);
 			pop();

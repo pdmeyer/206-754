@@ -2,12 +2,11 @@
 const sketchName = "linearConst2";
 const fileFormat = 'png'; //'jpg' or 'png'
 const debug = false;
-
-//background
-const imgfile = 'img/2019-02-26 15.45.50.jpg';
+const imgfile = 'img/2019-02-26 15.45.50_res.jpg';
+//const imgfile = 'img/2019-02-26 15.45.50.jpg';
+const jsonfile = 'data/bergintro_trimmed.json';
+const audiofile = 'audio/01_berg intro MIX 1.0_M3_256';
 const submatx = 0.5;
-// const matxeasing = 0.1;
-
 
 //vars
 let loopState;
