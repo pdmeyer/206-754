@@ -1,42 +1,45 @@
-
 //global configs
 const sketchName = "linearConst2";
 const fileFormat = 'png'; //'jpg' or 'png'
-
-//background
-// const imgfile = 'img/2019-02-26 15.39.57.jpg';
-const imgfile = 'img/2019-02-26 15.45.50.jpg';
+const debug = true;
+const imgfile = 'img/2019-02-26 15.45.50_res.jpg';
+const jsonfile = 'data/bergintro_trimmed.json';
+const audiofile = 'audio/01_berg intro MIX 1.0_M3_256.mp3';
 const submatx = 0.5;
-// const matxeasing = 0.1;
-
+const easing = 0.03;
+const growShrinkOn = true;
+const linesPerWrite = 1;
+const initBezzes = 1; //how many lines to start with
+const initMaxBezzes = 200; // how many lines to grow to
+const writeSpeed = 10; //framerate
+const scaleX = 1.2;
+const scaleY = 1.0;
+const rotateAmt = -20;
+const bgColor = {
+    red_i: 232,
+    red: 232,
+    green: 220,
+    blue: 204,
+    alpha: 150
+}
 
 //vars
-let loopState;
-let initState;
+let loopState = false;
+let initState = true;
 let ii = 0;
-
+let bez1;
 let bezzes = [];
-let growShrinkOn;
-let initMaxBezzes;
-let maxBezzes;
+let maxBezzes = initMaxBezzes;
 let gXPos;
 let gYPos;
 let c;
 
-let bez1;
-
-
-let writeRate;
-let scaleX;
-let scaleY;
 let clickCount = 0;
-
-
-let growShrinkAmt;
-let bgColor;
-
 let subx = 0;
 let suby = 0;
+let growShrinkAmt = 1;
+let pauseTime;
+
 
 //JSON data
 let songData;

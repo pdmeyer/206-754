@@ -1,8 +1,44 @@
-//START THINGS
-function startPlay(song){
+//start at the beginning
+function startPlay(_song){
+	loop();
 	timecode = 0;
 	startTime = Date.now();
-	song.play();
+	_song.play();
+	loopState = true;
+	initState = false;
+}
+
+//pause playback
+function pausePlay(_song) {
+	pauseTime = Date.now();
+	if(debug) console.log("pausetime: "+pauseTime);
+	loopState = false;
+	noLoop();
+	_song.pause();
+}
+
+//resume playing after pause
+function resumePlay(_song) {
+	interval = Date.now() - pauseTime;
+	if(debug) console.log("interval: "+interval)
+	startTime = startTime + interval;
+	if(debug) console.log("starttime: "+startTime);
+	loopState = true;
+	loop();
+	_song.play();
+}
+
+
+//reset to beginning
+function reset() {
+	if(debug) console.log("reset");
+	timecode = 0;
+	noLoop();
+	showimage();
+	c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
+	initState = true;
+	loopState = false;
+	song.stop();
 }
 
 //IMAGE + BG
@@ -14,15 +50,6 @@ function imgsub() {
 	//sin / noise
 	subx = map(sin_(ii,768),-1,1,0,img.width*submatx);
 	suby = map(sin_(ii,890),-1,1,0,img.height*submatx);
-	// suby = sin_(ii,8432,0,img.height*submatx);
-	// // subx = bfg(timecode, 0.0006, 3, 0.2, 0, img.width * submatx);
-	// // suby = bfg(timecode+3892, 0.0006, 4, 0.5, 0, img.width * submatx);
-
-	// //mouse
-	// let tx = map(mouseX,0,width,0,img.width * submatx) - subx;
-	// let ty = map(mouseY,0,height,0,img.height * submatx) - suby; 
-	// subx += tx * matxeasing;
-	// suby += ty * matxeasing;
 }
 
 function showimage() {
@@ -32,8 +59,7 @@ function showimage() {
 
 //DRAWING
 function maxBezInc(inc) {
-	maxBezzes += inc
-	//console.log(maxBezzes);
+	maxBezzes += inc;
 }
 
 function growShrink(max) {
