@@ -25,15 +25,15 @@ function pointregion(x, y , region) { //possible regions: uleft, uright, lleft, 
 	} else if (region == "uright") {
 		return x > 0.9 * width && y < 0.1 * height;
 	} else if (region == "lleft") {
-		return x<0.1*width && y >0.9*height;
+		return x < 0.1 * width && y > 0.9 * height;
 	} else if (region == "bottom") {
 		return y > 0.9 * height;
 	} else if (region == "top") {
 		return y < 0.1 * height;
 	} else if (region == "middle") {
-		return y > 0.9 * height && y > 0.1 * height;
+		return y < 0.9 * height && y > 0.1 * height;
 	} else if (region == "canvas") {
-		return y > 0.9 * height && y > 0.1 * height && x > 0.9 * width && x > 0.1 * width;
+		return y < 0.9 * height && y > 0.1 * height && x < 0.9 * width && x > 0.1 * width;
 	}
 }
 
