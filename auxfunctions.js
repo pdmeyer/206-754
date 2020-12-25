@@ -11,7 +11,7 @@ function startPlay(_song){
 //pause playback
 function pausePlay(_song) {
 	pauseTime = Date.now();
-	console.log("pausetime: "+pauseTime);
+	if(debug) console.log("pausetime: "+pauseTime);
 	loopState = false;
 	noLoop();
 	_song.pause();
@@ -20,9 +20,9 @@ function pausePlay(_song) {
 //resume playing after pause
 function resumePlay(_song) {
 	interval = Date.now() - pauseTime;
-	console.log("interval: "+interval)
+	if(debug) console.log("interval: "+interval)
 	startTime = startTime + interval;
-	console.log("starttime: "+startTime);
+	if(debug) console.log("starttime: "+startTime);
 	loopState = true;
 	loop();
 	_song.play();
@@ -31,7 +31,7 @@ function resumePlay(_song) {
 
 //reset to beginning
 function reset() {
-	console.log("reset");
+	if(debug) console.log("reset");
 	timecode = 0;
 	noLoop();
 	showimage();

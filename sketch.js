@@ -1,9 +1,8 @@
 function preload() {
 	songData = loadJSON(jsonfile);
-	img = loadImage(imgfile);	
-	// soundFormats('mp3');
+	img = loadImage(imgfile);
 	song = createAudio(audiofile);
-	song.onended(reset)
+
 }
 
 function setup() {
@@ -11,6 +10,7 @@ function setup() {
 	data1 = new DataStream(songData.razor);
 	gXPos = width * 0.25; 
 	gYPos = height * 0.5;
+
 
 	bez1 = {
 		vert: {
@@ -37,22 +37,15 @@ function setup() {
 		}
 	}
 
-	//initializations
-	loopState = false;
-	initState = true;
-	maxBezzes = initMaxBezzes;
 	frameRate(writeSpeed);
 	angleMode(DEGREES);
-	mouseDownX = 0;
-	mouseDownY = 0;
 	mouseX = width / 2;
-	mouseY = height / 2;	
-	ellipseX = mouseX;
-	ellipseY = mouseY;
+	mouseY = height / 2;
 
 	showimage();
 	c.background(bgColor.red_i, bgColor.green, bgColor.blue, bgColor.alpha);
 	noLoop();
+	song.onended(reset)
 }
 
 function draw() {
@@ -60,7 +53,6 @@ function draw() {
 		ii = millis() * writeSpeed/60;
 		mills = Date.now() - startTime;
 		timecode = Math.ceil(mills/16); //sync song to visual
-		let easing = 0.03;
 	
 		//modulations
 		bez1.vert.x1 = followPointer('x', bez1.vert.x1, easing); 
@@ -103,11 +95,6 @@ function draw() {
 				growShrink(initMaxBezzes);
 			};
 		};
-	
-		if (timecode >= data1.stream.length - 10*(1000/writeSpeed)) {
-			console.log(timecode); 
-			startPlay(song);
-		 };
 	
 		if(debug) console.log(millisToTime(mills)+' | '+timecode+' | '+Math.floor(100 * timecode / data1.stream.length)+'%' );
 	}	
