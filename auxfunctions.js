@@ -28,7 +28,6 @@ function resumePlay(_song) {
 	_song.play();
 }
 
-
 //reset to beginning
 function reset() {
 	if(debug) console.log("reset");
