@@ -8,18 +8,11 @@ function mousePressed () {
 function keyPressed () {
 	if(keyCode === 32) {
     if (initState) {
-      loop();
-      startPlay(song);
-      loopState = true;
-      initState = false;
+		startPlay(song);
     } else if(loopState) {
-			loopState = false;
-			noLoop();
-			song.pause();
+		pausePlay(song);
 		} else {
-			loopState = true;
-			loop();
-			song.play();
+		resumePlay(song);	
 		}
 		return false
 	}

@@ -1,11 +1,11 @@
 //global configs
 const sketchName = "linearConst2";
 const fileFormat = 'png'; //'jpg' or 'png'
-const debug = false;
+const debug = true;
 const imgfile = 'img/2019-02-26 15.45.50_res.jpg';
 //const imgfile = 'img/2019-02-26 15.45.50.jpg';
 const jsonfile = 'data/bergintro_trimmed.json';
-const audiofile = 'audio/01_berg intro MIX 1.0_M3_256';
+const audiofile = 'audio/01_berg intro MIX 1.0_M3_256.mp3';
 const submatx = 0.5;
 
 //vars
@@ -22,6 +22,8 @@ let clickCount = 0;
 let subx = 0;
 let suby = 0;
 let growShrinkAmt = 1;
+let pauseTime;
+let b;
 
 const growShrinkOn = true;
 const linesPerWrite = 1;

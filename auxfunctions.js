@@ -1,8 +1,44 @@
-//START THINGS
-function startPlay(song){
+//start at the beginning
+function startPlay(_song){
+	loop();
 	timecode = 0;
 	startTime = Date.now();
-	song.play();
+	_song.play();
+	loopState = true;
+	initState = false;
+}
+
+//pause playback
+function pausePlay(_song) {
+	pauseTime = Date.now();
+	console.log("pausetime: "+pauseTime);
+	loopState = false;
+	noLoop();
+	_song.pause();
+}
+
+//resume playing after pause
+function resumePlay(_song) {
+	interval = Date.now() - pauseTime;
+	console.log("interval: "+interval)
+	startTime = startTime + interval;
+	console.log("starttime: "+startTime);
+	loopState = true;
+	loop();
+	_song.play();
+}
+
+
+//reset to beginning
+function reset() {
+	console.log("reset");
+	timecode = 0;
+	noLoop();
+	showimage();
+	c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
+	initState = true;
+	loopState = false;
+	song.stop();
 }
 
 //IMAGE + BG

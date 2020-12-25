@@ -1,8 +1,9 @@
 function preload() {
 	songData = loadJSON(jsonfile);
 	img = loadImage(imgfile);	
-	soundFormats('mp3');
-	song = loadSound(audiofile);
+	// soundFormats('mp3');
+	song = createAudio(audiofile);
+	song.onended(reset)
 }
 
 function setup() {
@@ -90,7 +91,7 @@ function draw() {
 		if(frameCount % linesPerWrite == 0) {
 			showimage();
 			if(!bgColor.red) {
-				bg.Color.red = bgColor.red_i;
+				bgColor.red = bgColor.red_i;
 			}
 			c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
 
