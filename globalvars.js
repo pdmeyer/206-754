@@ -33,6 +33,7 @@ let maxBezzes = initMaxBezzes;
 let gXPos;
 let gYPos;
 let c;
+let frames = 1;
 
 let clickCount = 0;
 let subx = 0;

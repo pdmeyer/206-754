@@ -1,8 +1,7 @@
 //start at the beginning
 function startPlay(_song){
-	loop();
 	timecode = 0;
-	startTime = Date.now();
+	startTime = performance.now();
 	_song.play();
 	loopState = true;
 	initState = false;
@@ -10,34 +9,35 @@ function startPlay(_song){
 
 //pause playback
 function pausePlay(_song) {
-	pauseTime = Date.now();
+	pauseTime = performance.now();
 	if(debug) console.log("pausetime: "+pauseTime);
 	loopState = false;
-	noLoop();
 	_song.pause();
 }
 
 //resume playing after pause
 function resumePlay(_song) {
-	interval = Date.now() - pauseTime;
+	interval = performance.now() - pauseTime;
 	if(debug) console.log("interval: "+interval)
 	startTime = startTime + interval;
 	if(debug) console.log("starttime: "+startTime);
 	loopState = true;
-	loop();
 	_song.play();
 }
 
 //reset to beginning
 function reset() {
 	if(debug) console.log("reset");
-	timecode = 0;
-	noLoop();
-	showimage();
-	c.background(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
-	initState = true;
-	loopState = false;
 	song.stop();
+	loopState = false;
+	timecode = 0;
+	initState = true;
+}
+
+function gettime() {
+	mills = performance.now() - startTime;
+	timecode = Math.ceil(mills/16); //sync song to visual
+	ii = mills * writeSpeed/60;
 }
 
 //IMAGE + BG
