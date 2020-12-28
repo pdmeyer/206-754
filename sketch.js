@@ -44,15 +44,15 @@ function setup() {
 
 	showimage();
 	c.background(bgColor.red_i, bgColor.green, bgColor.blue, bgColor.alpha);
-	noLoop();
+	// noLoop();
 	song.onended(reset)
 }
 
 function draw() {
-	if(!initState) {
-		ii = millis() * writeSpeed/60;
-		mills = Date.now() - startTime;
-		timecode = Math.ceil(mills/16); //sync song to visual
+	showimage();
+	c.background(bgColor.red_i, bgColor.green, bgColor.blue, bgColor.alpha);
+	if(loopState) {
+		gettime();
 	
 		//modulations
 		bez1.vert.x1 = followPointer('x', bez1.vert.x1, easing); 
@@ -89,13 +89,28 @@ function draw() {
 
 			push();
 			scale(scaleX,scaleY);
-			writeLines(frameCount-2, maxBezzes,0,0);
+			writeLines(frames, maxBezzes,0,0);
 			pop();
 			if(growShrinkOn) {
 				growShrink(initMaxBezzes);
 			};
 		};
+		frames += 1;
 	
 		if(debug) console.log(millisToTime(mills)+' | '+timecode+' | '+Math.floor(100 * timecode / data1.stream.length)+'%' );
-	}	
+	}	else{
+		playButton();
+	}
+}
+
+function playButton() {
+  let centerX = width / 2;
+  let centerY = height / 2;
+  noStroke();
+  rectMode(CENTER)
+  fill(221, 218, 198);
+  rect(centerX, centerY, 110, 70, 5, 5, 5, 5);
+  fill(255, 255, 255);
+  let s = 20;
+  triangle(centerX + s, centerY, centerX - s, centerY + s, centerX - s, centerY - s);
 }
