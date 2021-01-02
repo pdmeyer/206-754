@@ -2,9 +2,9 @@
 const sketchName = "linearConst2";
 const fileFormat = 'png'; //'jpg' or 'png'
 const debug = true;
-const imgfile = 'img/2019-02-26 15.45.50_res.jpg';
-const jsonfile = 'data/bergintro_trimmed.json';
-const audiofile = 'audio/01_berg intro MIX 1.0_M3_256.mp3';
+const imgfile = '2019-02-26 15.45.50_res.jpg';
+const jsonfile = 'bergintro_trimmed.json';
+const audiofile = '01_berg intro MIX 1.0_M3_256.mp3';
 const submatx = 0.5;
 const easing = 0.03;
 const growShrinkOn = true;
