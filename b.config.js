@@ -1,10 +1,10 @@
 //global configs
 const sketchName = "linearConst2";
 const fileFormat = 'png'; //'jpg' or 'png'
-const debug = true;
-const imgfile = '2019-02-26 15.45.50_res.jpg';
-const jsonfile = 'bergintro_trimmed.json';
-const audiofile = '01_berg intro MIX 1.0_M3_256.mp3';
+const debug = false;
+const audiofile = 'https://files.cargocollective.com/c700175/01_berg-intro-MIX-1.0_M3_256.mp3';
+const jsonfile = 'https://files.cargocollective.com/c700175/bergintro_trimmed.json';
+const imgfile = 'https://files.cargocollective.com/c700175/2019-02-26-15.45.50_res.jpg';
 const submatx = 0.5;
 const easing = 0.03;
 const growShrinkOn = true;
