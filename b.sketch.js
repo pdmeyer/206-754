@@ -100,6 +100,7 @@ function draw() {
 		if(debug) console.log(millisToTime(mills)+' | '+timecode+' | '+Math.floor(100 * timecode / data1.stream.length)+'%' );
 	}	else{
 		playButton();
+		toggleLoop();
 	}
 }
 
@@ -112,5 +113,5 @@ function playButton() {
   rect(centerX, centerY, 110, 70, 5, 5, 5, 5);
   fill(255, 255, 255);
   let s = 20;
-  triangle(centerX + s, centerY, centerX - s, centerY + s, centerX - s, centerY - s);
+	triangle(centerX + s, centerY, centerX - s, centerY + s, centerX - s, centerY - s);
 }

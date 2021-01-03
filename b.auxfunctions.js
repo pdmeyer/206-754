@@ -5,6 +5,8 @@ function startPlay(_song){
 	_song.play();
 	loopState = true;
 	initState = false;
+	toggleLoop();
+	
 }
 
 //pause playback
@@ -23,6 +25,7 @@ function resumePlay(_song) {
 	if(debug) console.log("starttime: "+startTime);
 	loopState = true;
 	_song.play();
+	toggleLoop();
 }
 
 //reset to beginning
@@ -32,6 +35,14 @@ function reset() {
 	loopState = false;
 	timecode = 0;
 	initState = true;
+}
+
+function toggleLoop() {
+	if(loopState) {
+		loop();
+	} else {
+		noLoop();
+	}
 }
 
 function gettime() {
